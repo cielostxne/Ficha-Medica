@@ -1,0 +1,37 @@
+:root{
+  --azul-clinico:#0077b6;
+  --azul-claro:#caf0f8;
+  --azul-intermedio:#90e0ef;
+  --gris:#6b7280;
+  --blanco:#ffffff;
+  --ok:#059669;
+  --error:#dc2626;
+  --borde:#e5e7eb;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--azul-claro);color:#111827}
+.header{text-align:center;padding:1.5rem 1rem;background:var(--azul-clinico);color:var(--blanco)}
+.container{max-width:1000px;margin:1rem auto;padding:0 1rem}
+.card{background:var(--blanco);border:1px solid var(--borde);border-radius:12px;padding:1rem 1.25rem;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:1rem}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.full{grid-column:span 2}
+.field{display:flex;flex-direction:column;gap:.35rem}
+.error-msg{min-height:1em;font-size:.85rem;color:var(--error)}
+.grid-2 input,.grid-2 select,.grid-2 textarea{padding:.65rem .75rem;border:1px solid var(--borde);border-radius:10px;font-size:1rem}
+input.invalid,select.invalid,textarea.invalid{border-color:var(--error)!important;outline:none;box-shadow:0 0 0 2px rgba(220,38,38,.1)}
+input.valid,select.valid,textarea.valid{border-color:var(--ok)!important}
+.actions{display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap}
+.btn{border:1px solid var(--borde);background:#f9fafb;padding:.6rem .9rem;border-radius:999px;cursor:pointer}
+.btn.primary{background:var(--azul-clinico);color:var(--blanco);border-color:var(--azul-intermedio)}
+.btn.danger{background:#fde2e2;color:#991b1b;border-color:#fecaca}
+.table-wrapper{overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+thead th{position:sticky;top:0;background:#f3f4f6}
+td,th{padding:.5rem;border-bottom:1px solid var(--borde);text-align:left}
+.msg{margin-top:.5rem;min-height:1.2rem}
+.msg.ok{color:var(--ok)}.msg.error{color:var(--error)}
+.closed[hidden]{display:none!important}
+.closed{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.12);z-index:1000}
+.closed .card{max-width:520px;margin:0 1rem}
+.footer{padding:1.5rem 1rem;text-align:center;color:var(--gris);background:#f9fafb}
+@media (max-width:720px){.grid-2{grid-template-columns:1fr}.full{grid-column:span 1}}

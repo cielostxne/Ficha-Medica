@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ficha Médica - Centro Clínico</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>🩺 Ficha Médica</h1>
+    <p class="subtitle">Centro Clínico - Registro de Pacientes</p>
+  </header>
+
+  <main id="app" class="container">
+    <section class="card">
+      <h2>Registro de Pacientes</h2>
+      <form id="fichaForm" novalidate>
+        <div class="grid-2">
+          <div class="field">
+            <label for="rut">RUT*</label>
+            <input type="text" id="rut" placeholder="12.345.678-5" required>
+            <small class="error-msg" id="err-rut"></small>
+          </div>
+
+          <div class="field">
+            <label for="nombres">Nombres*</label>
+            <input type="text" id="nombres" required
+                   pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo letras y espacios">
+            <small class="error-msg" id="err-nombres"></small>
+          </div>
+
+          <div class="field">
+            <label for="apellidos">Apellidos*</label>
+            <input type="text" id="apellidos" required
+                   pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo letras y espacios">
+            <small class="error-msg" id="err-apellidos"></small>
+          </div>
+
+          <div class="field">
+            <label for="direccion">Dirección*</label>
+            <input type="text" id="direccion" required>
+            <small class="error-msg" id="err-direccion"></small>
+          </div>
+
+          <div class="field">
+            <label for="ciudad">Ciudad*</label>
+            <input type="text" id="ciudad" required
+                   pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo letras y espacios">
+            <small class="error-msg" id="err-ciudad"></small>
+          </div>
+
+          <div class="field">
+            <label for="telefono">Teléfono*</label>
+            <input type="tel" id="telefono" inputmode="numeric" autocomplete="tel-national"
+                   placeholder="912345678" required pattern="\d{8,}" title="Solo dígitos, mínimo 8">
+            <small class="error-msg" id="err-telefono"></small>
+          </div>
+
+          <div class="field">
+            <label for="email">Email*</label>
+            <input type="email" id="email" placeholder="nombre@dominio.com" required>
+            <small class="error-msg" id="err-email"></small>
+          </div>
+
+          <div class="field">
+            <label for="fechaNacimiento">Fecha de Nacimiento*</label>
+            <input type="date" id="fechaNacimiento" required>
+            <small class="error-msg" id="err-fechaNacimiento"></small>
+          </div>
+
+          <div class="field">
+            <label for="estadoCivil">Estado Civil*</label>
+            <select id="estadoCivil" required>
+              <option value="">Seleccione…</option>
+              <option>Soltero/a</option><option>Casado/a</option>
+              <option>Divorciado/a</option><option>Viudo/a</option>
+              <option>Conviviente</option>
+            </select>
+            <small class="error-msg" id="err-estadoCivil"></small>
+          </div>
+
+          <div class="field full">
+            <label for="comentarios">Comentarios</label>
+            <textarea id="comentarios" rows="3"></textarea>
+            <small class="error-msg" id="err-comentarios"></small>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="button" id="btnGuardar" class="btn primary">Guardar</button>
+          <button type="reset" id="btnLimpiar" class="btn">Limpiar</button>
+          <button type="button" id="btnCerrar" class="btn danger">Cerrar</button>
+        </div>
+        <p id="msg" class="msg" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Buscar por Apellido</h2>
+      <div class="search">
+        <input type="text" id="buscarApellido" placeholder="Escribe un apellido…">
+      </div>
+      <div class="table-wrapper">
+        <table id="resultados">
+          <thead>
+            <tr>
+              <th>RUT</th><th>Nombres</th><th>Apellidos</th><th>Ciudad</th><th>Teléfono</th><th>Email</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <section id="closed" class="closed" hidden>
+    <div class="card">
+      <h2>Sesión cerrada</h2>
+      <p>Gracias por usar la Ficha Médica.</p>
+      <button class="btn" id="reabrir">Reabrir</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <small>© 2025 Centro Clínico</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
