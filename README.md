@@ -1,4 +1,4 @@
-# Ficha Médica — Centro Clínico (Strict Final)
+# Ficha Médica — Centro Clínico
 - Estilo hospitalario, validación inline por campo.
 - Nombres/Apellidos/Ciudad: solo letras y espacios (bloqueo de teclas y pegado).
 - Teléfono: solo dígitos (bloqueo de teclas y pegado), mínimo 8.
