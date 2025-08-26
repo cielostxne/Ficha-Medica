@@ -1,4 +1,4 @@
-// ====== Teclado y pegado seguros ======
+// ====== Teclado y pegado ======
 const CTRL_KEYS = new Set(['Backspace','Delete','ArrowLeft','ArrowRight','Tab','Home','End']);
 function allowOnlyLettersSpaces(e){ const k=e.key; if(CTRL_KEYS.has(k)||e.ctrlKey||e.metaKey) return; if(/^[a-zA-ZÀ-ÿ\s]$/.test(k)) return; e.preventDefault(); }
 function allowOnlyDigits(e){ const k=e.key; if(CTRL_KEYS.has(k)||e.ctrlKey||e.metaKey) return; if(/^\d$/.test(k)) return; e.preventDefault(); }
@@ -7,13 +7,13 @@ function sanitizeDigits(el){ el.value=(el.value||'').replace(/\D/g,''); }
 function pasteLettersSpaces(e){ e.preventDefault(); const t=(e.clipboardData||window.clipboardData).getData('text').replace(/[^a-zA-ZÀ-ÿ\s]/g,''); document.execCommand('insertText', false, t); }
 function pasteDigits(e){ e.preventDefault(); const t=(e.clipboardData||window.clipboardData).getData('text').replace(/\D/g,''); document.execCommand('insertText', false, t); }
 
-// ===== Utilidades RUT (Chile) =====
+// ===== RUT  =====
 const cleanRut = (rut) => (rut || '').toString().replace(/[^\dkK]/gi, '').toUpperCase();
 function dvModulo11(numStr){let sum=0,mul=2;for(let i=numStr.length-1;i>=0;i--){sum+=parseInt(numStr[i],10)*mul;mul=mul===7?2:mul+1;}const res=11-(sum%11);return res===11?'0':res===10?'K':String(res);}
 function validarRutValor(rutInput){const clean=cleanRut(rutInput);if(clean.length<2)return false;const body=clean.slice(0,-1);const dv=clean.slice(-1);if(!/^\d+$/.test(body))return false;return dvModulo11(body)===dv;}
 function formatRut(rut){const clean=cleanRut(rut);if(clean.length<2)return rut;const body=clean.slice(0,-1);const dv=clean.slice(-1);const withDots=body.replace(/\B(?=(\d{3})+(?!\d))/g,'.');return `${withDots}-${dv}`;}
 
-// ===== Email estricto =====
+// ===== Email =====
 function validarEmailValor(email){
   if(!email||typeof email!=='string') return false;
   if(email.includes(',')) return false;
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     telefono.addEventListener('input',()=>sanitizeDigits(telefono));
   }
 
-  // 2) Validación inline
+  // 2) Validación 
   const ids=['rut','nombres','apellidos','direccion','ciudad','telefono','email','fechaNacimiento','estadoCivil','comentarios'];
   ids.forEach(id=>{
     const el=document.getElementById(id);
